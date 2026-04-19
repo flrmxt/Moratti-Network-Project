@@ -32,7 +32,7 @@ La red utiliza una arquitectura jerárquica de tres capas distribuida en tres se
 * **Servicios:** Cluster de servidores (DNS, Web, DHCP, Mail y RADIUS para autenticación centralizada).
 
 ## 📂 Estructura del Repositorio
-* `/Scripts`: Configuraciones finales de routers y switches (.cfg).
+* `/Scripts`: Configuraciones finales de todos los dispositivos utilizados (.cfg).
 * `/Documentation`: Archivos técnicos y entregables del proyecto
 
 ---
