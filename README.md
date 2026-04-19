@@ -10,7 +10,8 @@ Este repositorio contiene una arquitectura de red diseñada por **Moratti**, una
     * Alessandro Ciavaglia Mejia
     * Cesar Augusto Rivera Pantaleon
     * Jorge Enmanuel Sime Matos
-* **Documentation & Deliverables:** * Matthews James Guzman
+* **Documentation & Deliverables:** 
+    * Matthews James Guzman
     * Michael Manuel Cotes Aquino
 
 ## 🌐 Resumen de la Topología
