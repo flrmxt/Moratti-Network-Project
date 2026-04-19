@@ -1,4 +1,5 @@
 # Moratti-Network-Project
+<img width="938" height="625" alt="image" src="https://github.com/user-attachments/assets/b3dee506-8cf3-448e-b934-72fb4abab0a3" />
 
 Este repositorio contiene una arquitectura de red diseñada por **Moratti**, una empresa dominicana de relojería de lujo inteligente que integra artesanía con tecnologías blockchain y NFC. 
 
@@ -33,7 +34,7 @@ La red utiliza una arquitectura jerárquica de tres capas distribuida en tres se
 
 ## 📂 Estructura del Repositorio
 * `/Scripts`: Configuraciones finales de routers y switches (.cfg).
-* `/Documentation`: Documentación técnica detallada, plan de direccionamiento VLSM y manuales de verificación.
+* `/Documentation`: Archivos técnicos y entregables del proyecto
 
 ---
 *Este proyecto fue desarrollado como parte de la formación técnica en el ITLA.*
