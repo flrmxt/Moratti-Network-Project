@@ -1,8 +1,6 @@
 # Moratti-Network-Project
 
-# Moratti Network Infrastructure Project ⌚🚀
-
-Este repositorio contiene la arquitectura de red completa para **Moratti**, una empresa dominicana de relojería de lujo inteligente que integra artesanía con tecnologías blockchain y NFC. 
+Este repositorio contiene la arquitectura de red completa hecha por **Moratti**, una empresa dominicana de relojería de lujo inteligente que integra artesanía con tecnologías blockchain y NFC. 
 
 ## 👥 Equipo de Proyecto
 * **Project Leader:** Silfredo Mitchell Vargas Fernandez
