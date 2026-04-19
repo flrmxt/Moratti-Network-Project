@@ -5,7 +5,8 @@ Este repositorio contiene una arquitectura de red diseñada por **Moratti**, una
 ## 👥 Equipo de Proyecto
 * **Project Leader:** Silfredo Mitchell Vargas Fernandez
 * **Assistant Leader:** Enyer Osmar Roa Zarzuela
-* **Engineering Team:** * Brayan Ariel Carrasco De León
+* **Engineering Team:**
+    * Brayan Ariel Carrasco De León
     * Alessandro Ciavaglia Mejia
     * Cesar Augusto Rivera Pantaleon
     * Jorge Enmanuel Sime Matos
