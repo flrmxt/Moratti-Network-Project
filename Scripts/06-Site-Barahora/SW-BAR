@@ -1,0 +1,113 @@
+!==========================================================
+!  DISPOSITIVO 17: SW-BAR  (Access Switch, Barahona)
+!  Mgmt IP: 192.168.99.51  |  GW: 192.168.99.50
+!==========================================================
+hostname SW-BAR
+enable secret MORATTI2025
+no ip domain-lookup
+service password-encryption
+!
+username admin privilege 15 secret Admin@ITLA2025
+ip domain-name moratti.com.do
+crypto key generate rsa modulus 2048
+ip ssh version 2
+!
+banner motd ^
+  *** ACCESO RESTRINGIDO — EMPRESA MORATTI ***
+^
+!
+!--- VLANs -----------------------------------------------
+vlan 10
+ name DEPTO1-BAR
+vlan 20
+ name DEPTO2-BAR
+vlan 30
+ name DEPTO3-BAR
+vlan 99
+ name MANAGEMENT
+vlan 999
+ name NATIVA
+!
+!--- TRUNK UPLINK → R-BARAHONA --------------------------
+interface e0/0
+ description "Trunk → R-BARAHONA"
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,99,999
+ switchport nonegotiate
+ ip dhcp snooping trust
+ ip arp inspection trust
+ spanning-tree guard root
+ no shutdown
+!
+!--- PUERTOS ACCESO VLAN 10 (DEPTO 1 — 25 hosts) --------
+interface range e0/1-3, e1/0-1
+ description "Hosts Depto 1"
+ switchport mode access
+ switchport access vlan 10
+ switchport nonegotiate
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ ip dhcp snooping limit rate 15
+ ip arp inspection limit rate 100
+ storm-control broadcast level 20.00
+ storm-control action shutdown
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security aging time 10
+ no shutdown
+!
+!--- PUERTOS ACCESO VLAN 20 (DEPTO 2 — 52 hosts) --------
+interface range e1/2-3, e2/0-3, e3/0-3
+ description "Hosts Depto 2"
+ switchport mode access
+ switchport access vlan 20
+ switchport nonegotiate
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ ip dhcp snooping limit rate 15
+ ip arp inspection limit rate 100
+ storm-control broadcast level 20.00
+ storm-control action shutdown
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security aging time 10
+ no shutdown
+!
+!--- PUERTOS ACCESO VLAN 30 (DEPTO 3 — 7 hosts) ---------
+!  NOTA: Si no hay puertos disponibles, agregar SW-BAR2
+!        en trunk con este switch, solo con VLAN 30 y 99.
+!
+!--- MANAGEMENT ------------------------------------------
+interface vlan 99
+ ip address 192.168.99.51 255.255.255.0
+ no shutdown
+!
+ip default-gateway 192.168.99.50
+!
+!--- DHCP SNOOPING & DAI ---------------------------------
+ip dhcp snooping
+ip dhcp snooping vlan 10,20,30,99
+no ip dhcp snooping information option
+ip arp inspection vlan 10,20,30,99
+!
+!--- STP -------------------------------------------------
+spanning-tree mode rapid-pvst
+!
+!--- SSH / VTY -------------------------------------------
+ip access-list standard SSH-MGMT
+ permit 192.168.99.0 0.0.0.255
+ deny   any
+!
+line console 0
+ login local
+ logging synchronous
+!
+line vty 0 4
+ login local
+ transport input ssh
+ access-class SSH-MGMT in
+!
+end
+!----------------------------------------------------------
