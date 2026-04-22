@@ -28,6 +28,8 @@ crypto isakmp policy 10
 ! Claves pre-compartidas para cada sucursal
 crypto isakmp key Moratti@2025 address 19.0.0.6
 crypto isakmp key Moratti@2025 address 19.0.0.10
+crypto isakmp key Moratti@2025 address 19.0.0.14
+crypto isakmp key Moratti@2025 address 19.0.0.18
 !
 !--- IPSEC TRANSFORM SET (IKE Fase 2) -------------------
 crypto ipsec transform-set TSET esp-aes 256 esp-sha256-hmac
@@ -86,6 +88,26 @@ interface Tunnel1
  ip ospf 763 area 0
  tunnel source e0/0
  tunnel destination 19.0.0.10
+ tunnel protection ipsec profile VPN-PROFILE
+ no shutdown
+!
+!--- TÚNEL GRE/IPSEC hacia Puerto Plata ------------------
+interface Tunnel2
+ description "VPN-GRE → R-PUERTOPLATA"
+ ip address 192.168.200.9 255.255.255.252
+ ip ospf 763 area 0
+ tunnel source e0/0
+ tunnel destination 19.0.0.14
+ tunnel protection ipsec profile VPN-PROFILE
+ no shutdown
+!
+!--- TÚNEL GRE/IPSEC hacia Barahona ----------------------
+interface Tunnel3
+ description "VPN-GRE → R-BARAHONA"
+ ip address 192.168.200.13 255.255.255.252
+ ip ospf 763 area 0
+ tunnel source e0/0
+ tunnel destination 19.0.0.18
  tunnel protection ipsec profile VPN-PROFILE
  no shutdown
 !
